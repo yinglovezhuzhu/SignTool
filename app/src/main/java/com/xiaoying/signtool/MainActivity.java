@@ -78,8 +78,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         mTvMsg.setText(String.format(getResources().getString(R.string.package_name_format), packageName));
         mTvMsg.append(mLineSeparator);
-        mTvMsg.append(mLineSeparator);
-        mTvMsg.append(getResources().getString(R.string.tips_click_to_copy_to_clipboard));
 
         try {
             @SuppressLint("PackageManagerGetSignatures")
@@ -113,6 +111,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 sha256FingerPrint = convert2HexFormatted(md.digest());
                 Log.e("SHA-256:", sha256FingerPrint);
                 mTvSHA256.setText(sha256FingerPrint);
+
+                mTvMsg.append(mLineSeparator);
+                mTvMsg.append(getResources().getString(R.string.tips_click_to_copy_to_clipboard));
 
             }
         } catch (PackageManager.NameNotFoundException e) {
