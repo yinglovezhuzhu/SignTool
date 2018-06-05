@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">SignTool</string>
+
+    <string name="package_name_hint">Please Input package name</string>
+
+    <string name="get_signature_key_hash">Get signature information</string>
+
+    <string name="package_name_format">Package name: %s</string>
+    <string name="tips_click_to_copy_to_clipboard">Tips: Click item to copy to clipboard</string>
+    <string name="key_hash_label">KeyHash:</string>
+    <string name="md5_fingerprint_label">MD5:</string>
+    <string name="sha1_fingerprint_label">SHA-1:</string>
+    <string name="sha256_fingerprint_label">SHA-256:</string>
+    <string name="error_package_not_found">Error: Package not install in this device!</string>
+    <string name="error_get_signature_failed">Error: Get signature failed!</string>
+
+    <string name="already_copy_to_clipboard">Already copy to clipboard</string>
+    <string name="fail_to_copy_to_clipboard">Fail to copy to clipboard</string>
+</resources>

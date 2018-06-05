@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">签名工具</string>
+
+    <string name="package_name_hint">请输入包名</string>
+
+    <string name="get_signature_key_hash">获取签名信息</string>
+
+    <string name="package_name_format">包名: %s</string>
+    <string name="tips_click_to_copy_to_clipboard">提示: 点击项目可以拷贝到剪切板</string>
+    <string name="key_hash_label">KeyHash:</string>
+    <string name="md5_fingerprint_label">MD5:</string>
+    <string name="sha1_fingerprint_label">SHA-1:</string>
+    <string name="sha256_fingerprint_label">SHA-256:</string>
+    <string name="error_package_not_found">错误: 没有找到指定包名的应用！</string>
+    <string name="error_get_signature_failed">错误: 获取签名keyHash失败！</string>
+
+    <string name="already_copy_to_clipboard">已复制到剪切板</string>
+    <string name="fail_to_copy_to_clipboard">复制到剪切板失败</string>
+</resources>
