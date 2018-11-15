@@ -86,6 +86,7 @@ public class HistoryActivity extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 if(0 == which) {
+                                    sp.edit().remove(packageNames.get(position)).apply();
                                     packageNames.remove(position);
                                     adapter.notifyDataSetChanged();
                                 }
