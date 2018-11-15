@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="history_item_opts">
+        <item>Delete</item>
+    </array>
+</resources>

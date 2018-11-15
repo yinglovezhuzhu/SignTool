@@ -5,23 +5,35 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
-    <EditText
-        android:id="@+id/et_input"
+    <LinearLayout
+        android:id="@+id/ll_package_name"
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="15dp"
-        app:layout_constraintTop_toTopOf="parent"
-        android:hint="@string/package_name_hint"
-        android:inputType="textCapCharacters"
-        android:maxLines="1"/>
+        android:padding="15dp"
+        android:gravity="center_vertical">
+        <EditText
+            android:id="@+id/et_input"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="@string/package_name_hint"
+            android:inputType="textCapCharacters"
+            android:maxLines="1"/>
+        <Button
+            android:id="@+id/btn_history"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/history"
+            android:onClick="onClick"/>
+    </LinearLayout>
 
     <Button
         android:id="@+id/btn_get_signature_key_hash"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="15dp"
         android:text="@string/get_signature_key_hash"
-        app:layout_constraintTop_toBottomOf="@id/et_input"
+        app:layout_constraintTop_toBottomOf="@id/ll_package_name"
         android:onClick="onClick"/>
 
     <ScrollView

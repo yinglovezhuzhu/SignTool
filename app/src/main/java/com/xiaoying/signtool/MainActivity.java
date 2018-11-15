@@ -4,6 +4,8 @@ import android.annotation.SuppressLint;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
@@ -22,6 +24,10 @@ import java.security.NoSuchAlgorithmException;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
+    public static final String EXTRA_PACKAGE_NAME = "extra_package_name";
+
+    private static final int RC_HISTORY = 1000;
+
     private EditText mEtInput;
     private TextView mTvMsg;
     private TextView mTvKeyHash;
@@ -30,6 +36,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView mTvSHA256;
 
     private String mLineSeparator = System.getProperty("line.separator", "\n");
+
+    private SharedPreferences mSp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,11 +55,32 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         rippleView(mTvMD5);
         rippleView(mTvSHA1);
         rippleView(mTvSHA256);
+
+        mSp = getSharedPreferences("app_data", Context.MODE_PRIVATE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(RC_HISTORY == requestCode) {
+            if(RESULT_OK == resultCode) {
+                final String packageName = data.getStringExtra(EXTRA_PACKAGE_NAME);
+                if(TextUtils.isEmpty(packageName)) {
+                    return;
+                }
+                if(null != mEtInput) {
+                    mEtInput.setText(packageName);
+                }
+            }
+        }
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.btn_history:
+                startActivityForResult(new Intent(MainActivity.this, HistoryActivity.class), RC_HISTORY);
+                break;
             case R.id.btn_get_signature_key_hash:
                 getSignatureInfo();
                 break;
@@ -78,6 +107,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         mTvMsg.setText(String.format(getResources().getString(R.string.package_name_format), packageName));
         mTvMsg.append(mLineSeparator);
+
+        // save to history
+        save(packageName);
 
         try {
             @SuppressLint("PackageManagerGetSignatures")
@@ -181,5 +213,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 .rippleHover(true)
                 .rippleAlpha(0.2f)
                 .create();
+    }
+
+    private void save(String packageName) {
+        long time = System.currentTimeMillis();
+        mSp.edit().putLong(packageName, time).apply();
     }
 }

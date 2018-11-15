@@ -17,4 +17,6 @@
     <string name="already_copy_to_clipboard">Already copy to clipboard</string>
     <string name="fail_to_copy_to_clipboard">Fail to copy to clipboard</string>
     <string name="powered_by">Powered by: yinglovezhuzhu@gmail.com</string>
+    <string name="history">history</string>
+    <string name="cancel">Cancel</string>
 </resources>
