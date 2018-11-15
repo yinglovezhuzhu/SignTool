@@ -5,22 +5,21 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
-import java.util.SortedMap;
-import java.util.TreeMap;
 
 public class HistoryActivity extends AppCompatActivity {
 
@@ -28,7 +27,6 @@ public class HistoryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
-
 
         initView();
     }
@@ -38,7 +36,25 @@ public class HistoryActivity extends AppCompatActivity {
         exitWithResult(RESULT_CANCELED, null);
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                exitWithResult(RESULT_CANCELED, null); // back button
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     private void initView() {
+
+        ActionBar actionBar = getSupportActionBar();
+        if(null != actionBar) {
+            actionBar.setTitle(R.string.history);
+            actionBar.setHomeButtonEnabled(true);
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
+
         ListView lvList = findViewById(R.id.lv_history);
 
         final SharedPreferences sp = getSharedPreferences("app_data", Context.MODE_PRIVATE);

@@ -15,6 +15,7 @@ import android.text.TextUtils;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -79,9 +80,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_history:
+                hideSoftKeyboard(MainActivity.this, v);
                 startActivityForResult(new Intent(MainActivity.this, HistoryActivity.class), RC_HISTORY);
                 break;
             case R.id.btn_get_signature_key_hash:
+                hideSoftKeyboard(MainActivity.this, v);
                 getSignatureInfo();
                 break;
             case R.id.tv_key_hash:
@@ -110,6 +113,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         // save to history
         save(packageName);
+
+        mTvKeyHash.setText("");
+        mTvMD5.setText("");
+        mTvSHA1.setText("");
+        mTvSHA256.setText("");
 
         try {
             @SuppressLint("PackageManagerGetSignatures")
@@ -218,5 +226,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void save(String packageName) {
         long time = System.currentTimeMillis();
         mSp.edit().putLong(packageName, time).apply();
+    }
+
+
+
+    /**
+     * 隐藏输入软键盘
+     * @param context Context对象
+     * @param view 当前页面有效的View控件对象
+     */
+    public static void hideSoftKeyboard(Context context, View view) {
+        InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (null != imm && imm.isActive()) {
+            if (view.getWindowToken() != null) {
+                imm.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+            }
+        }
     }
 }
