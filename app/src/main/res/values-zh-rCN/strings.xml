@@ -16,4 +16,5 @@
 
     <string name="already_copy_to_clipboard">已复制到剪切板</string>
     <string name="fail_to_copy_to_clipboard">复制到剪切板失败</string>
+    <string name="powered_by">版权所有: yinglovezhuzhu@gmail.com</string>
 </resources>

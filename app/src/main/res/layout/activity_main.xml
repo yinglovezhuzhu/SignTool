@@ -25,6 +25,7 @@
         android:onClick="onClick"/>
 
     <ScrollView
+        android:id="@+id/sv_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -145,5 +146,14 @@
             </TableLayout>
         </LinearLayout>
     </ScrollView>
-
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:gravity="center"
+        android:textSize="16sp"
+        android:textColor="#FF808080"
+        android:alpha="0.4"
+        android:text="@string/powered_by"/>
 </android.support.constraint.ConstraintLayout>

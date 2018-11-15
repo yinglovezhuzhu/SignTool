@@ -4,10 +4,10 @@ android {
 
     signingConfigs {
         config {
-            keyAlias 'rsdk-international-dev'
-            keyPassword 'rsdk-international-dev'
-            storeFile file('../keystore/rsdk-international-dev.jks')
-            storePassword 'rsdk-international-dev'
+            keyAlias 'sign_tool'
+            keyPassword '12345678'
+            storeFile file('../keystore/sign_tool.jks')
+            storePassword '12345678'
         }
     }
 
