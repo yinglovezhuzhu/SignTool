@@ -69,7 +69,7 @@ public class SelectAppActivity extends AppCompatActivity {
 
             @Override
             protected List<ApplicationInfo> doInBackground(Void... voids) {
-                return null;
+                return mPackageManager.getInstalledApplications(PackageManager.GET_META_DATA);
             }
 
             @Override
