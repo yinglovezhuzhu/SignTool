@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_main_history"
+        android:icon="@android:drawable/ic_menu_recent_history"
+        android:title="@string/history"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_main_select_app"
+        android:icon="@android:mipmap/sym_def_app_icon"
+        android:title="@string/select_app"
+        app:showAsAction="never" />
+</menu>

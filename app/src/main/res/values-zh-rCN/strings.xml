@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">签名工具</string>
+    <string name="app_name">签名查看工具</string>
 
     <string name="package_name_hint">请输入包名</string>
 
@@ -18,5 +18,6 @@
     <string name="fail_to_copy_to_clipboard">复制到剪切板失败</string>
     <string name="powered_by">版权所有: yinglovezhuzhu@gmail.com</string>
     <string name="history">历史记录</string>
+    <string name="select_app">选择应用</string>
     <string name="cancel">取消</string>
 </resources>

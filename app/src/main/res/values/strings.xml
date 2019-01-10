@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SignTool</string>
+    <string name="app_name">Signing View</string>
 
     <string name="package_name_hint">Please Input package name</string>
 
@@ -18,5 +18,6 @@
     <string name="fail_to_copy_to_clipboard">Fail to copy to clipboard</string>
     <string name="powered_by">Powered by: yinglovezhuzhu@gmail.com</string>
     <string name="history">history</string>
+    <string name="select_app">Select App</string>
     <string name="cancel">Cancel</string>
 </resources>

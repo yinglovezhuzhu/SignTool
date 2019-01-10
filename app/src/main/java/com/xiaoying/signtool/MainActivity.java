@@ -14,6 +14,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Base64;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
@@ -28,6 +30,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public static final String EXTRA_PACKAGE_NAME = "extra_package_name";
 
     private static final int RC_HISTORY = 1000;
+    private static final int RC_SELECT_APP = 1001;
 
     private EditText mEtInput;
     private TextView mTvMsg;
@@ -45,25 +48,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mEtInput = findViewById(R.id.et_input);
-        mTvMsg = findViewById(R.id.tv_msg);
-        mTvKeyHash = findViewById(R.id.tv_key_hash);
-        mTvMD5 = findViewById(R.id.tv_md5_fingerprint);
-        mTvSHA1 = findViewById(R.id.tv_sha1_fingerprint);
-        mTvSHA256 = findViewById(R.id.tv_sha256_fingerprint);
-
-        rippleView(mTvKeyHash);
-        rippleView(mTvMD5);
-        rippleView(mTvSHA1);
-        rippleView(mTvSHA256);
-
         mSp = getSharedPreferences("app_data", Context.MODE_PRIVATE);
+
+        initView();
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(RC_HISTORY == requestCode) {
+        if(RC_HISTORY == requestCode || RC_SELECT_APP == requestCode) {
             if(RESULT_OK == resultCode) {
                 final String packageName = data.getStringExtra(EXTRA_PACKAGE_NAME);
                 if(TextUtils.isEmpty(packageName)) {
@@ -79,10 +72,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.btn_history:
-                hideSoftKeyboard(MainActivity.this, v);
-                startActivityForResult(new Intent(MainActivity.this, HistoryActivity.class), RC_HISTORY);
-                break;
             case R.id.btn_get_signature_key_hash:
                 hideSoftKeyboard(MainActivity.this, v);
                 getSignatureInfo();
@@ -97,6 +86,45 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             default:
                 break;
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_main_history:
+                // 历史记录
+                hideSoftKeyboard(MainActivity.this, mEtInput);
+                startActivityForResult(new Intent(MainActivity.this, HistoryActivity.class), RC_HISTORY);
+                return true;
+            case R.id.action_main_select_app:
+                hideSoftKeyboard(MainActivity.this, mEtInput);
+                startActivityForResult(new Intent(MainActivity.this, SelectAppActivity.class), RC_HISTORY);
+                return true;
+            default:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void initView() {
+
+        mEtInput = findViewById(R.id.et_input);
+        mTvMsg = findViewById(R.id.tv_msg);
+        mTvKeyHash = findViewById(R.id.tv_key_hash);
+        mTvMD5 = findViewById(R.id.tv_md5_fingerprint);
+        mTvSHA1 = findViewById(R.id.tv_sha1_fingerprint);
+        mTvSHA256 = findViewById(R.id.tv_sha256_fingerprint);
+
+        rippleView(mTvKeyHash);
+        rippleView(mTvMD5);
+        rippleView(mTvSHA1);
+        rippleView(mTvSHA256);
     }
 
     /**
