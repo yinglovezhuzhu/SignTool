@@ -1,2 +1,7 @@
-# SignTool
-SignTool is a tool for developer to get signature information, witch has been installed in device. Only need to know is the package name of target application.
+# Android签名信息查看工具
+
+## 介绍
+
+Android签名查看工具是一个查看Android应用签名信息的工具，分别以秘钥散列、MD5、SHA-1和SHA-256方式展示签名信息，方便开发者和运营同事核对应用的签名信息。
+
+## 使用方法
