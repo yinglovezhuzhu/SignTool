@@ -125,6 +125,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         rippleView(mTvMD5);
         rippleView(mTvSHA1);
         rippleView(mTvSHA256);
+
+        mTvMsg.requestFocus();
     }
 
     /**
