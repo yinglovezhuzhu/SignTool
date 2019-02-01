@@ -20,4 +20,6 @@
     <string name="history">历史记录</string>
     <string name="select_app">选择应用</string>
     <string name="cancel">取消</string>
+    <string name="confirm">确定</string>
+    <string name="clear_hsitory">清除历史记录?</string>
 </resources>
